@@ -27,4 +27,9 @@ public class MainModel implements Model{
         modelData.setDisplayDeletedUserList(true);
     }
 
+    @Override
+    public void loadUserById(long userId) {
+        modelData.setActiveUser(userService.getUsersById(userId));
+    }
+
 }
