@@ -16,7 +16,7 @@ public class Solution {
         public MyThread(String secretKey) {
             this.secretKey = secretKey;
             setUncaughtExceptionHandler(new MyUncaughtExceptionHandler());
-            setDaemon(true);
+            //setDaemon(true);
         }
 
         @Override
@@ -26,18 +26,20 @@ public class Solution {
 
         private class MyUncaughtExceptionHandler implements UncaughtExceptionHandler{
             public MyUncaughtExceptionHandler() {
-
             }
-
 
             @Override
             public void uncaughtException(Thread t, Throwable e) {
+                try {
+                    Thread.sleep(500);
+                    System.out.println(String.format("%s, %s, %s", secretKey, t.getName(), e.getMessage()));
 
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
+                }
             }
         }
     }
-
-
 
 }
 
